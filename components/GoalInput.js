@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { View, TextInput, Button } from 'react-native';
+import { View, TextInput, Button, Modal } from 'react-native';
 import { useState } from 'react';
 
 const GoalInput = (props) => {
@@ -15,15 +15,20 @@ const GoalInput = (props) => {
   };
 
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.textInput}
-        placeholder='Your course goal!'
-        onChangeText={goalInputHandler}
-        value={enteredGoal}
-      />
-      <Button title='Add Goal' onPress={addGoalHandler} />
-    </View>
+    <Modal visible={props.visible} animationType='slide'>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.textInput}
+          placeholder='Your course goal!'
+          onChangeText={goalInputHandler}
+          value={enteredGoal}
+        />
+        <View style={styles.buttonContainer}>
+          <Button title='Add Goal' onPress={addGoalHandler} />
+          <Button title='Cancel' onPress={props.setCancel} />
+        </View>
+      </View>
+    </Modal>
   );
 };
 
@@ -32,8 +37,8 @@ export default GoalInput;
 const styles = StyleSheet.create({
   inputContainer: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 24,
     borderBottomWidth: 1,
@@ -45,5 +50,11 @@ const styles = StyleSheet.create({
     width: '70%',
     marginRight: 8,
     padding: 8,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 8,
+    width: '40%',
   },
 });
