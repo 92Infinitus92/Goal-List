@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     color: '#120438',
     width: '80%',
     padding: 8,
-    color: 'white',
+    color: '#311b6b',
   },
   buttonContainer: {
     flexDirection: 'row',
